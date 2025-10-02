@@ -3,9 +3,33 @@
     "title": "God's Grace in Every Season",
     "scripture": {
       "reference": "Romans 5:1",
-      "tokPisin": "Mipela i kisim bel isi long God long bilip bilong Jisas Krais."
+      "tokPisin": "Mipela i kisim bel isi long God long bilip bilong Jisas Krais.",
+      "english": "We have peace with God through our faith in Jesus Christ."
     },
     "devotionalText": "God i save givim bel isi long yumi long olgeta taim. Em i stap wantaim yumi long olgeta samting.",
+    "devotionalTextEnglish": "God gives us peace in every season. He is with us through everything.",
     "audioUrl": "audio/dev001.mp3"
+  },
+  {
+    "title": "Setbek na Strong",
+    "scripture": {
+      "reference": "2 Corinthians 12:9",
+      "tokPisin": "Nogat, mi bai helpim yu long strong bilong mi yet. Strong bilong mi i kamap klia taim yu no gat strong.",
+      "english": "My grace is sufficient for you, for My power is made perfect in weakness."
+    },
+    "devotionalText": "Taim yumi i pundaun, God i kirapim yumi. Em i mekim setbek i kamap rot bilong strong.",
+    "devotionalTextEnglish": "When we fall, God lifts us. He turns setbacks into pathways of strength.",
+    "audioUrl": "audio/dev002.mp3"
+  },
+  {
+    "title": "Nupela Stat",
+    "scripture": {
+      "reference": "Isaiah 43:19",
+      "tokPisin": "Lukim! Mi wok long mekim wanpela nupela samting. Nau em i kamap pinis. Yu no lukim?",
+      "english": "See, I am doing a new thing! Now it springs up; do you not perceive it?"
+    },
+    "devotionalText": "God i save kirapim nupela rot long laip bilong yumi. Em i rausim ol paspela hevi na bringim nupela bel isi.",
+    "devotionalTextEnglish": "God begins new paths in our lives. He clears away old burdens and brings fresh peace.",
+    "audioUrl": "audio/dev003.mp3"
   }
 ]

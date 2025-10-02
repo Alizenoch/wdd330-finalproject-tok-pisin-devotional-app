@@ -1,3 +1,5 @@
+import { setupLanguageToggle } from './language-toggle.js';
+
 document.getElementById("date").textContent = `Date: ${new Date().toDateString()}`;
 
 fetch('devotionals.json')
@@ -6,9 +8,10 @@ fetch('devotionals.json')
     const devotional = data[0]; // Load the first devotional
 
     document.getElementById('title').textContent = devotional.title;
-    document.getElementById('scripture').textContent = devotional.scripture.tokPisin;
     document.getElementById('reference').textContent = `(${devotional.scripture.reference})`;
-    document.getElementById('devotion').textContent = devotional.devotionalText;
     document.getElementById('audioPlayer').src = devotional.audioUrl;
+
+    setupLanguageToggle(devotional);
   })
   .catch(error => console.error('Error loading devotionals:', error));
+
