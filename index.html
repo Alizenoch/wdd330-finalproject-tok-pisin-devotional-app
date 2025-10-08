@@ -23,7 +23,7 @@
       <p id="devotion"></p>
 
       <button id="toggleLang">Switch Language</button>
-      <audio id="audioPlayer" controls></audio>
+       <!--<audio id="audioPlayer" controls></audio> -->
     </section>
   </main>
 
@@ -31,7 +31,13 @@
     <p>© 2025 Alison Hopa – WDD 330 Final Project</p>
   </footer>
 
-  <script src="app.js"></script>
   <script type="module" src="app.js"></script>
+    <script> if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('offlineManager.js')
+      .then(reg => console.log('Service Worker registered:', reg.scope))
+      .catch(err => console.error('Registration failed:', err));
+  }
+  </script>
+
 </body>
 </html>
