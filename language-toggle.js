@@ -2,20 +2,40 @@ export function setupLanguageToggle(devotional) {
   let isTokPisin = true;
 
   function updateContent() {
-    document.getElementById('scripture').textContent = isTokPisin
-      ? devotional.scripture.tokPisin
-      : devotional.scripture.english;
+    const titleEl = document.getElementById('title');
+    const scriptureEl = document.getElementById('scripture');
+    const devotionEl = document.getElementById('devotion');
+    const toggleBtn = document.getElementById('toggleLang');
+    const audioPlayer = document.getElementById('audioPlayer');
 
-    document.getElementById('devotion').textContent = isTokPisin
-      ? devotional.devotionalText
-      : devotional.devotionalTextEnglish;
+    if (titleEl && scriptureEl && devotionEl && toggleBtn) {
+      titleEl.textContent = isTokPisin
+        ? devotional.title.tokPisin
+        : devotional.title.english;
 
-    document.getElementById('toggleLang').textContent = isTokPisin
-      ? 'Switch to English'
-      : 'Switch to Tok Pisin';
+      scriptureEl.textContent = isTokPisin
+        ? devotional.scripture.tokPisin
+        : devotional.scripture.english;
+
+      devotionEl.textContent = isTokPisin
+        ? devotional.devotionalText.tokPisin
+        : devotional.devotionalText.english;
+
+      toggleBtn.textContent = isTokPisin
+        ? 'Switch to English'
+        : 'Switch to Tok Pisin';
+
+      if (audioPlayer && devotional.audio) {
+        audioPlayer.src = isTokPisin
+          ? devotional.audio.tokPisin
+          : devotional.audio.english;
+      }
+    } else {
+      console.warn('One or more elements not found for language toggle.');
+    }
   }
 
-  document.getElementById('toggleLang').addEventListener('click', () => {
+  document.getElementById('toggleLang')?.addEventListener('click', () => {
     isTokPisin = !isTokPisin;
     updateContent();
   });

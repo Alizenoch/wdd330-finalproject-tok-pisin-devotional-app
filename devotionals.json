@@ -1,35 +1,109 @@
 [
   {
-    "title": "God's Grace in Every Season",
+    "date": "2025-10-08",
+    "title": {
+      "tokPisin": "Gris Bilong God Long Olgeta Taim",
+      "english": "God's Grace in Every Season"
+    },
     "scripture": {
       "reference": "Romans 5:1",
+      "source": "Bible",
       "tokPisin": "Mipela i kisim bel isi long God long bilip bilong Jisas Krais.",
-      "english": "We have peace with God through our faith in Jesus Christ."
+      "english": "We have peace with God through faith in Jesus Christ."
     },
-    "devotionalText": "God i save givim bel isi long yumi long olgeta taim. Em i stap wantaim yumi long olgeta samting.",
-    "devotionalTextEnglish": "God gives us peace in every season. He is with us through everything.",
-    "audioUrl": "audio/dev001.mp3"
+    "devotionalText": {
+      "tokPisin": "God i save givim bel isi long yumi long olgeta taim. Em i stap wantaim yumi long olgeta samting.",
+      "english": "God gives us peace in every season. He walks with us through all things."
+    },
+    "audio": {
+      "tokPisin": "audio/2025-10-08_tokPisin.mp3",
+      "english": "audio/2025-10-08_english.mp3"
+    }
   },
   {
-    "title": "Setbek na Strong",
-    "scripture": {
-      "reference": "2 Corinthians 12:9",
-      "tokPisin": "Nogat, mi bai helpim yu long strong bilong mi yet. Strong bilong mi i kamap klia taim yu no gat strong.",
-      "english": "My grace is sufficient for you, for My power is made perfect in weakness."
+    "date": "2025-10-09",
+    "title": {
+      "tokPisin": "Redi Long Bihainim Tok Bilong God",
+      "english": "Prepared for Every Commandment"
     },
-    "devotionalText": "Taim yumi i pundaun, God i kirapim yumi. Em i mekim setbek i kamap rot bilong strong.",
-    "devotionalTextEnglish": "When we fall, God lifts us. He turns setbacks into pathways of strength.",
-    "audioUrl": "audio/dev002.mp3"
+    "scripture": {
+      "reference": "1 Nephi 3:7",
+      "source": "Book of Mormon",
+      "tokPisin": "God i save givim rot long yumi long bihainim tok bilong em.",
+      "english": "The Lord prepares a way for us to keep His commandments."
+    },
+    "devotionalText": {
+      "tokPisin": "Yumi ken bilip long plan bilong God long laip bilong yumi.",
+      "english": "We can trust God's plan for our lives."
+    },
+    "audio": {
+      "tokPisin": "audio/2025-10-09_tokPisin.mp3",
+      "english": "audio/2025-10-09_english.mp3"
+    }
   },
   {
-    "title": "Nupela Stat",
-    "scripture": {
-      "reference": "Isaiah 43:19",
-      "tokPisin": "Lukim! Mi wok long mekim wanpela nupela samting. Nau em i kamap pinis. Yu no lukim?",
-      "english": "See, I am doing a new thing! Now it springs up; do you not perceive it?"
+    "date": "2025-10-10",
+    "title": {
+      "tokPisin": "Strong Long Taim Bilong Traim",
+      "english": "Strength in Trials"
     },
-    "devotionalText": "God i save kirapim nupela rot long laip bilong yumi. Em i rausim ol paspela hevi na bringim nupela bel isi.",
-    "devotionalTextEnglish": "God begins new paths in our lives. He clears away old burdens and brings fresh peace.",
-    "audioUrl": "audio/dev003.mp3"
+    "scripture": {
+      "reference": "Ether 12:27",
+      "source": "Book of Mormon",
+      "tokPisin": "God i ken brukim yumi long ol samting bilong yumi, tasol em i ken mekim yumi strong moa.",
+      "english": "God can take away our weaknesses and make us stronger."
+    },
+    "devotionalText": {
+      "tokPisin": "Oltaim God i stap wantaim yumi long taim bilong traim.",
+      "english": "God is always with us in times of trial."
+    },
+    "audio": {
+      "tokPisin": "audio/2025-10-10_tokPisin.mp3",
+      "english": "audio/2025-10-10_english.mp3"
+    }
+  },
+  {
+    "date": "2025-10-11",
+    "title": {
+      "tokPisin": "Amamas Long Wok Bilong Helpim",
+      "english": "Joy in Service"
+    },
+    "scripture": {
+      "reference": "Mosiah 2:17",
+      "source": "Book of Mormon",
+      "tokPisin": "Taim yumi helpim ol narapela, yumi helpim God.",
+      "english": "When we serve others, we are serving God."
+    },
+    "devotionalText": {
+      "tokPisin": "Yumi ken kisim amamas taim yumi helpim ol narapela.",
+      "english": "We can find joy in helping others."
+    },
+    "audio": {
+      "tokPisin": "audio/2025-10-11_tokPisin.mp3",
+      "english": "audio/2025-10-11_english.mp3"
+    }
+  },
+  {
+    "date": "2025-10-12",
+    "title": {
+      "tokPisin": "Bilip I Ken Tanim Maunten",
+      "english": "Faith that Moves Mountains"
+    },
+    "scripture": {
+      "reference": "Matthew 17:20",
+      "source": "Bible",
+      "tokPisin": "Sapos yu gat bilip olsem liklik graun, yu inap tokim maunten long go long ples bilong em.",
+      "english": "If you have faith as small as a mustard seed, you can move mountains."
+    },
+    "devotionalText": {
+      "tokPisin": "Bilip i strongpela samting long laip bilong yumi.",
+      "english": "Faith is a powerful thing in our lives."
+    },
+    "audio": {
+      "tokPisin": "audio/2025-10-12_tokPisin.mp3",
+      "english": "audio/2025-10-12_english.mp3"
+    }
   }
 ]
+
+

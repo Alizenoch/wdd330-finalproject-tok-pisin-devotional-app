@@ -23,25 +23,45 @@ fetch('devotionals.json')
     return response.json();
   })
   .then(data => {
-    const devotional = data[0]; // Load the first devotional
+    const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    const devotional = data.find(entry => entry.date === today) || data[0]; // Fallback to first if not found
 
-    // Populate content
-    document.getElementById('title').textContent = devotional.title || 'Untitled';
-    document.getElementById('scripture').textContent = devotional.scripture.text || '';
-    document.getElementById('reference').textContent = devotional.scripture.reference
-      ? `(${devotional.scripture.reference})`
-      : '';
-    document.getElementById('devotion').textContent = devotional.thought || '';
-   
+    // Confirm structure before rendering
+    if (
+      devotional &&
+      devotional.title &&
+      devotional.scripture &&
+      devotional.devotionalText &&
+      devotional.audio
+    ) {
+      // Populate initial Tok Pisin content
+      const titleEl = document.getElementById('title');
+      const scriptureEl = document.getElementById('scripture');
+      const referenceEl = document.getElementById('reference');
+      const devotionEl = document.getElementById('devotion');
+      const audioPlayer = document.getElementById('audioPlayer');
 
-    // Initialize language toggle
-    setupLanguageToggle(devotional);
+      if (titleEl && scriptureEl && referenceEl && devotionEl && audioPlayer) {
+        titleEl.textContent = devotional.title.tokPisin || 'Untitled';
+        scriptureEl.textContent = devotional.scripture.tokPisin || '';
+        referenceEl.textContent = devotional.scripture.reference
+          ? `(${devotional.scripture.reference})`
+          : '';
+        devotionEl.textContent = devotional.devotionalText.tokPisin || '';
+        audioPlayer.src = devotional.audio.tokPisin || '';
+      }
 
-    // Show push notification
-    showDevotionalNotification("📖 Today's Devotional", devotional.title || "New devotional is available.");
+      // Initialize language toggle
+      setupLanguageToggle(devotional);
+
+      // Show push notification
+      showDevotionalNotification("📖 Today's Devotional", devotional.title.english || "New devotional is available.");
+    } else {
+      console.warn('Devotional structure is incomplete.');
+      document.getElementById('devotion').textContent = 'Devotional data is missing or incomplete.';
+    }
   })
   .catch(error => {
     console.error('Error loading devotionals:', error);
     document.getElementById('devotion').textContent = 'Unable to load devotional content.';
   });
-

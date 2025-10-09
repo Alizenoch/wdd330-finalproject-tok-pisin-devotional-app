@@ -15,6 +15,7 @@
   <main>
     <section id="devotional">
       <h2 id="title">Title</h2>
+
       <h3>📖 Scripture</h3>
       <p id="scripture"></p>
       <p id="reference" class="reference"></p>
@@ -22,8 +23,10 @@
       <h3>🕊️ Devotional Thought</h3>
       <p id="devotion"></p>
 
+      <h3>🔊 Audio Narration</h3>
+      <audio id="audioPlayer" controls></audio>
+
       <button id="toggleLang">Switch Language</button>
-       <!--<audio id="audioPlayer" controls></audio> -->
     </section>
   </main>
 
@@ -32,12 +35,14 @@
   </footer>
 
   <script type="module" src="app.js"></script>
-    <script> if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('offlineManager.js')
-      .then(reg => console.log('Service Worker registered:', reg.scope))
-      .catch(err => console.error('Registration failed:', err));
-  }
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('offlineManager.js')
+        .then(reg => console.log('Service Worker registered:', reg.scope))
+        .catch(err => console.error('Registration failed:', err));
+    }
   </script>
-
 </body>
 </html>
+
+
