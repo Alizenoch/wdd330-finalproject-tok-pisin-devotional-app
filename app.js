@@ -8,33 +8,54 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.error('❌ Service Worker registration failed:', err));
 }
 
-// Set today's date
-document.getElementById("date").textContent = `Date: ${new Date().toDateString()}`;
-
 // Ask for notification permission on load
 requestNotificationPermission();
 
-// Load devotional content
-fetch('devotionals.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-    const devotional = data.find(entry => entry.date === today) || data[0]; // Fallback to first if not found
+// Track current date
+let currentDate = new Date();
 
-    // Confirm structure before rendering
-    if (
-      devotional &&
-      devotional.title &&
-      devotional.scripture &&
-      devotional.devotionalText &&
-      devotional.audio
-    ) {
-      // Populate initial Tok Pisin content
+// Fallback devotional for offline or missing dates
+const fallbackDevotional = {
+  date: 'fallback',
+  title: {
+    tokPisin: 'Tok Bilong Strongim Bel',
+    english: 'Words of Encouragement'
+  },
+  scripture: {
+    tokPisin: 'God bai i stap wantaim yu long olgeta taim.',
+    english: 'God will be with you always.',
+    reference: 'Joshua 1:9'
+  },
+  devotionalText: {
+    tokPisin: 'No ken pret. God i stap wantaim yu.',
+    english: 'Do not fear. God is with you.'
+  },
+  audio: {
+    tokPisin: 'audio/fallback_tokPisin.mp3',
+    english: 'audio/fallback_english.mp3'
+  }
+};
+
+// Display date
+function updateDateDisplay() {
+  document.getElementById("date").textContent = `Date: ${currentDate.toDateString()}`;
+}
+
+// Load devotional for a given date
+function loadDevotional(date) {
+  const dateStr = date.toISOString().split('T')[0];
+  console.log('Requested date:', dateStr);
+
+  fetch('devotionals.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const devotional = data.find(entry => entry.date === dateStr) || fallbackDevotional;
+
       const titleEl = document.getElementById('title');
       const scriptureEl = document.getElementById('scripture');
       const referenceEl = document.getElementById('reference');
@@ -49,19 +70,41 @@ fetch('devotionals.json')
           : '';
         devotionEl.textContent = devotional.devotionalText.tokPisin || '';
         audioPlayer.src = devotional.audio.tokPisin || '';
+
+        if (devotional.date === 'fallback') {
+          devotionEl.textContent += '\n⚠️ Showing fallback devotional due to missing or offline data.';
+        }
       }
 
-      // Initialize language toggle
       setupLanguageToggle(devotional);
-
-      // Show push notification
       showDevotionalNotification("📖 Today's Devotional", devotional.title.english || "New devotional is available.");
-    } else {
-      console.warn('Devotional structure is incomplete.');
-      document.getElementById('devotion').textContent = 'Devotional data is missing or incomplete.';
-    }
-  })
-  .catch(error => {
-    console.error('Error loading devotionals:', error);
-    document.getElementById('devotion').textContent = 'Unable to load devotional content.';
-  });
+    })
+    .catch(error => {
+      console.error('Error loading devotionals:', error);
+      const devotionEl = document.getElementById('devotion');
+      const audioPlayer = document.getElementById('audioPlayer');
+
+      if (devotionEl && audioPlayer) {
+        devotionEl.textContent = fallbackDevotional.devotionalText.tokPisin +
+          '\n⚠️ Showing fallback devotional due to network error.';
+        audioPlayer.src = fallbackDevotional.audio.tokPisin;
+      }
+
+      setupLanguageToggle(fallbackDevotional);
+    });
+}
+
+// Navigation logic
+function navigateDevotional(direction) {
+  currentDate.setDate(currentDate.getDate() + direction);
+  updateDateDisplay();
+  loadDevotional(currentDate);
+}
+
+// Wire up buttons
+document.getElementById('prevBtn').addEventListener('click', () => navigateDevotional(-1));
+document.getElementById('nextBtn').addEventListener('click', () => navigateDevotional(1));
+
+// Initial load
+updateDateDisplay();
+loadDevotional(currentDate);

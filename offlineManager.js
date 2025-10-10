@@ -1,13 +1,20 @@
 // offlineManager.js
 
-const CACHE_NAME = 'devotional-cache-v1';
+const CACHE_NAME = 'devotional-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',
   '/styles.css',
-  '/audio/devotional-oct8.mp3',
+  '/app.js',
+  '/language-toggle.js',
+  '/notifications.js',
+  '/devotionals.json',
+  '/audio/2025-10-08_tokPisin.mp3',
+  '/audio/2025-10-08_english.mp3',
+  '/audio/2025-10-10_tokPisin.mp3',
+  '/audio/2025-10-10_english.mp3',
   '/images/logo.png',
-  '/devotionals/oct8.html'
+  '/offline.html' // Optional fallback page
 ];
 
 // Cache assets on install
@@ -23,12 +30,14 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+      return response || fetch(event.request).catch(() =>
+        caches.match('/offline.html') // Optional fallback
+      );
     })
   );
 });
 
-// Optional: Clean up old caches
+// Clean up old caches
 self.addEventListener('activate', event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(

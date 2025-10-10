@@ -8,7 +8,7 @@ export function setupLanguageToggle(devotional) {
     const toggleBtn = document.getElementById('toggleLang');
     const audioPlayer = document.getElementById('audioPlayer');
 
-    if (titleEl && scriptureEl && devotionEl && toggleBtn) {
+    if (titleEl && scriptureEl && devotionEl && toggleBtn && audioPlayer) {
       titleEl.textContent = isTokPisin
         ? devotional.title.tokPisin
         : devotional.title.english;
@@ -25,11 +25,11 @@ export function setupLanguageToggle(devotional) {
         ? 'Switch to English'
         : 'Switch to Tok Pisin';
 
-      if (audioPlayer && devotional.audio) {
-        audioPlayer.src = isTokPisin
-          ? devotional.audio.tokPisin
-          : devotional.audio.english;
-      }
+      audioPlayer.src = isTokPisin
+        ? devotional.audio.tokPisin
+        : devotional.audio.english;
+
+      audioPlayer.load(); // 🔄 Force reload of audio source
     } else {
       console.warn('One or more elements not found for language toggle.');
     }
@@ -42,3 +42,4 @@ export function setupLanguageToggle(devotional) {
 
   updateContent(); // Initial render
 }
+
