@@ -32,10 +32,14 @@ button {
   padding: 10px;
   margin-top: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 button:hover {
   background-color: #0277BD;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
 }
 
 /* ✅ New styling for status bar */

@@ -1,3 +1,4 @@
+
 import { setupLanguageToggle } from './language-toggle.js';
 import { requestNotificationPermission, showDevotionalNotification } from './notifications.js';
 
@@ -34,6 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function updateFlipCard(devotional) {
+    const frontEl = document.querySelector('.card-front p');
+    const backEl = document.querySelector('.card-back p');
+
+    if (frontEl && backEl) {
+      frontEl.textContent = devotional.scripture.tokPisin || '';
+      backEl.textContent = devotional.devotionalText.tokPisin || '';
+    }
+  }
+
   function loadDevotional(date) {
     const dateStr = date.toISOString().split('T')[0];
     console.log('Requested date:', dateStr);
@@ -46,27 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         const devotional = data.find(entry => entry.date === dateStr) || fallbackDevotional;
 
-        const titleEl = document.getElementById('title');
-        const scriptureEl = document.getElementById('scripture');
-        const referenceEl = document.getElementById('reference');
-        const devotionEl = document.getElementById('devotion');
-        const audioPlayer = document.getElementById('audioPlayer');
+        updateFlipCard(devotional);
 
-        if (titleEl && scriptureEl && referenceEl && devotionEl && audioPlayer) {
-          titleEl.textContent = devotional.title.tokPisin || 'Untitled';
-          scriptureEl.textContent = devotional.scripture.tokPisin || '';
-          referenceEl.textContent = devotional.scripture.reference
-            ? `(${devotional.scripture.reference})`
-            : '';
-          devotionEl.textContent = devotional.devotionalText.tokPisin || '';
-          audioPlayer.src = devotional.audio.tokPisin || '';
-
-          if (devotional.date === 'fallback') {
-            devotionEl.textContent += '\n⚠️ Showing fallback devotional due to missing or offline data.';
-          }
+        // 🔄 LocalStorage: Retrieve preferred language
+        const savedLang = localStorage.getItem('preferredLanguage');
+        console.log('Applying devotional in:', savedLang || 'tokPisin'); // ✅ Log applied language
+        if (savedLang) {
+          setupLanguageToggle(devotional, savedLang);
+        } else {
+          setupLanguageToggle(devotional);
         }
 
-        setupLanguageToggle(devotional);
         showDevotionalNotification("📖 Today's Devotional", devotional.title.english || "New devotional is available.");
       })
       .catch(error => {
@@ -80,7 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
           audioPlayer.src = fallbackDevotional.audio.tokPisin;
         }
 
-        setupLanguageToggle(fallbackDevotional);
+        updateFlipCard(fallbackDevotional);
+
+        // 🔄 LocalStorage: Retrieve preferred language for fallback
+        const savedLang = localStorage.getItem('preferredLanguage');
+        console.log('Applying devotional in:', savedLang || 'tokPisin'); // ✅ Log applied language
+        if (savedLang) {
+          setupLanguageToggle(fallbackDevotional, savedLang);
+        } else {
+          setupLanguageToggle(fallbackDevotional);
+        }
       });
   }
 
@@ -111,31 +121,35 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function fetchBibleVerse() {
-    const bibleApiKey = '598d946e6da7af464fb35adb8ec94b'; // ✅ Active API key from API.Bible
-    const bibleVersionId = 'de4e12af7f28f599-02'; // ESV version
-    const verseId = 'MAT.17.20'; // Matthew 17:20
+    const bibleApiKey = '598d946e6da7af464fb35adb8ec94b';
+    const bibleVersionId = 'de4e12af7f28f599-02';
+    const verseId = 'MAT.17.20';
 
     fetch(`https://api.scripture.api.bible/v1/bibles/${bibleVersionId}/verses/${verseId}`, {
       headers: { 'api-key': bibleApiKey }
     })
       .then(response => response.json())
       .then(data => {
-        const verseContainer = document.getElementById('bible-scripture');
-        if (verseContainer) {
-          verseContainer.innerHTML = `
-            <h3>📘 Bible Verse (English)</h3>
-            <p>${data.data.content}</p>
-          `;
+        const spinner = document.getElementById('spinner');
+        const verseText = document.getElementById('verse-text');
+
+        if (spinner && verseText) {
+          spinner.style.display = 'none';
+          verseText.textContent = data.data.content;
+          verseText.classList.remove('hidden');
+          verseText.classList.add('visible');
         }
       })
       .catch(error => {
         console.error('Bible API error:', error);
-        const verseContainer = document.getElementById('bible-scripture');
-        if (verseContainer) {
-          verseContainer.innerHTML = `
-            <h3>📘 Bible Verse (English)</h3>
-            <p>⚠️ Unable to load Bible verse. Please try again later.</p>
-          `;
+        const spinner = document.getElementById('spinner');
+        const verseText = document.getElementById('verse-text');
+
+        if (spinner && verseText) {
+          spinner.style.display = 'none';
+          verseText.textContent = '⚠️ Unable to load Bible verse. Please try again later.';
+          verseText.classList.remove('hidden');
+          verseText.classList.add('visible');
         }
       });
   }

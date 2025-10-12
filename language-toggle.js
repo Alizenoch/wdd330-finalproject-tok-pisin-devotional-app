@@ -1,5 +1,5 @@
-export function setupLanguageToggle(devotional) {
-  let isTokPisin = true;
+export function setupLanguageToggle(devotional, initialLang = 'tokPisin') {
+  let isTokPisin = initialLang === 'tokPisin'; // ✅ Use stored preference if available
 
   function updateContent() {
     const titleEl = document.getElementById('title');
@@ -37,6 +37,8 @@ export function setupLanguageToggle(devotional) {
 
   document.getElementById('toggleLang')?.addEventListener('click', () => {
     isTokPisin = !isTokPisin;
+    const currentLang = isTokPisin ? 'tokPisin' : 'english';
+    localStorage.setItem('preferredLanguage', currentLang); // ✅ Save preference
     updateContent();
   });
 
