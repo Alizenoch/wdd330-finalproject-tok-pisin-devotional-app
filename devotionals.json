@@ -103,6 +103,69 @@
       "tokPisin": "audio/2025-10-12_tokPisin.mp3",
       "english": "audio/2025-10-12_english.mp3"
     }
+  },
+  {
+    "date": "2025-10-13",
+    "title": {
+      "tokPisin": "Hope i Stap Long Rot Bilong Yumi",
+      "english": "Hope in the Journey"
+    },
+    "scripture": {
+      "reference": "2 Nephi 31:20",
+      "source": "Book of Mormon",
+      "tokPisin": "Yumi mas wokabaut wantaim bilip na hop long Krais.",
+      "english": "Wherefore, ye must press forward with a steadfastness in Christ, having a perfect brightness of hope."
+    },
+    "devotionalText": {
+      "tokPisin": "Taim yumi wokabaut wantaim bilip, God bai i givim yumi strong long go het.",
+      "english": "As we walk in faith, God gives us strength to move forward."
+    },
+    "audio": {
+      "tokPisin": "audio/2025-10-13_tokPisin.mp3",
+      "english": "audio/2025-10-13_english.mp3"
+    }
+  },
+  {
+    "date": "2025-10-14",
+    "title": {
+      "tokPisin": "Bilip I No Bringim Sem",
+      "english": "No Shame in Belief"
+    },
+    "scripture": {
+      "reference": "Romans 10:11",
+      "source": "Bible",
+      "tokPisin": "Man i bilip long Krais bai i no sem.",
+      "english": "Anyone who believes in Him will never be put to shame."
+    },
+    "devotionalText": {
+      "tokPisin": "Bilip long Jisas i mekim yumi stap strong na no ken pret.",
+      "english": "Believing in Jesus makes us strong and unafraid."
+    },
+    "audio": {
+      "tokPisin": "audio/2025-10-14_tokPisin.mp3",
+      "english": "audio/2025-10-14_english.mp3"
+    }
+  },
+  {
+    "date": "2025-10-15",
+    "title": {
+      "tokPisin": "God i Harim Kraia Bilong Yumi",
+      "english": "God Hears Our Cry"
+    },
+    "scripture": {
+      "reference": "Psalm 34:15",
+      "source": "Bible",
+      "tokPisin": "Ai bilong God i lukim ol stretpela man na em i harim krai bilong ol.",
+      "english": "The eyes of the Lord are on the righteous and His ears are attentive to their cry."
+    },
+    "devotionalText": {
+      "tokPisin": "God i harim taim yumi singaut long em. Em i stap klostu long bel bilong yumi.",
+      "english": "God hears us when we call. He is close to our hearts."
+    },
+    "audio": {
+      "tokPisin": "audio/2025-10-15_tokPisin.mp3",
+      "english": "audio/2025-10-15_english.mp3"
+    }
   }
 ]
 

@@ -1,3 +1,4 @@
+/* Base layout styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #FFF8E1;
@@ -6,12 +7,15 @@ body {
   padding: 20px;
 }
 
-header, footer {
+/* Header and footer styling */
+header,
+footer {
   text-align: center;
   background-color: #FBC02D;
   padding: 10px;
 }
 
+/* Main content container */
 main {
   max-width: 600px;
   margin: auto;
@@ -20,6 +24,7 @@ main {
   border-radius: 8px;
 }
 
+/* Button styling */
 button {
   background-color: #0288D1;
   color: white;
@@ -49,4 +54,3 @@ button:hover {
   display: inline-block;
   margin-bottom: 10px;
 }
-
