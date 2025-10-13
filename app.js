@@ -1,11 +1,12 @@
-
 import { setupLanguageToggle } from './language-toggle.js';
 import { requestNotificationPermission, showDevotionalNotification } from './notifications.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   requestNotificationPermission();
 
-  let currentDate = new Date();
+  // 🔄 Retrieve last viewed date or default to today
+  const savedDate = localStorage.getItem('lastDevotionalDate');
+  let currentDate = savedDate ? new Date(savedDate) : new Date();
 
   const fallbackDevotional = {
     date: 'fallback',
@@ -59,9 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateFlipCard(devotional);
 
-        // 🔄 LocalStorage: Retrieve preferred language
+        // ✅ Save last viewed date
+        localStorage.setItem('lastDevotionalDate', dateStr);
+
+        // 🔄 Retrieve preferred language
         const savedLang = localStorage.getItem('preferredLanguage');
-        console.log('Applying devotional in:', savedLang || 'tokPisin'); // ✅ Log applied language
+        console.log('Applying devotional in:', savedLang || 'tokPisin');
         if (savedLang) {
           setupLanguageToggle(devotional, savedLang);
         } else {
@@ -83,9 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateFlipCard(fallbackDevotional);
 
-        // 🔄 LocalStorage: Retrieve preferred language for fallback
         const savedLang = localStorage.getItem('preferredLanguage');
-        console.log('Applying devotional in:', savedLang || 'tokPisin'); // ✅ Log applied language
         if (savedLang) {
           setupLanguageToggle(fallbackDevotional, savedLang);
         } else {
@@ -161,6 +163,28 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDateDisplay();
     loadDevotional(currentDate);
   }
+
+  // 🔄 Share method tracking
+  const lastMethod = localStorage.getItem('lastShareMethod');
+  if (lastMethod) {
+    const btn = document.getElementById(`${lastMethod.toLowerCase()}Btn`);
+    if (btn) {
+      btn.style.border = '2px solid #4CAF50';
+      btn.title = `Last shared via ${lastMethod}`;
+    }
+  }
+
+  document.getElementById('whatsappBtn')?.addEventListener('click', () => {
+    localStorage.setItem('lastShareMethod', 'WhatsApp');
+  });
+
+  document.getElementById('smsBtn')?.addEventListener('click', () => {
+    localStorage.setItem('lastShareMethod', 'SMS');
+  });
+
+  document.getElementById('facebookBtn')?.addEventListener('click', () => {
+    localStorage.setItem('lastShareMethod', 'Facebook');
+  });
 
   document.getElementById('prevBtn')?.addEventListener('click', () => navigateDevotional(-1));
   document.getElementById('nextBtn')?.addEventListener('click', () => navigateDevotional(1));
